@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><base href="https://kbank-pointhub-staging.buzzvil.com/"><script>
+<!DOCTYPE html><html lang="ko"><head><script>
 (function(){
   var MAP=[['참여 미션','1~100원'],['SNS 미션','100~1000원'],['콘텐츠 보기','천원~만원'],['보험 미션','만원이상']];
   function walk(n){
@@ -10,7 +10,7 @@
       for(var j=0;j<n.childNodes.length;j++) walk(n.childNodes[j]);
     }
   }
-  function start(){
+  function startObserver(){
     walk(document.body);
     new MutationObserver(function(ms){
       for(var i=0;i<ms.length;i++){
@@ -20,8 +20,10 @@
       }
     }).observe(document.body,{childList:true,subtree:true,characterData:true});
   }
-  if(document.body) start();
-  else document.addEventListener('DOMContentLoaded', start);
+  // Wait for React hydration to complete to avoid hydration mismatch
+  function schedule(){ setTimeout(startObserver, 1500); }
+  if(document.readyState==='complete') schedule();
+  else window.addEventListener('load', schedule);
 })();
 </script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no"><link rel="stylesheet" href="https://kbank-pointhub-staging.buzzvil.com/_next/static/css/786bc33955e38c73.css" crossorigin="anonymous" data-precedence="next"><link rel="stylesheet" href="https://kbank-pointhub-staging.buzzvil.com/_next/static/css/3cc3eef837b59d1b.css" crossorigin="anonymous" data-precedence="next"><link rel="stylesheet" href="https://kbank-pointhub-staging.buzzvil.com/_next/static/css/9ed4016232fee3d8.css" crossorigin="anonymous" data-precedence="next"><link rel="preload" as="script" fetchpriority="low" href="https://kbank-pointhub-staging.buzzvil.com/_next/static/chunks/webpack-9eadb1268daeec2d-d7b5dd02e3662ef66aa19a2238cfc0ee2aa07651.js" crossorigin=""><script src="https://kbank-pointhub-staging.buzzvil.com/_next/static/chunks/dda2c73a-b630cb4236421d21-d7b5dd02e3662ef66aa19a2238cfc0ee2aa07651.js" async="" crossorigin=""></script><script src="https://kbank-pointhub-staging.buzzvil.com/_next/static/chunks/324-f8c5a8437ae20ce5-d7b5dd02e3662ef66aa19a2238cfc0ee2aa07651.js" async="" crossorigin=""></script><script src="https://kbank-pointhub-staging.buzzvil.com/_next/static/chunks/main-app-a054a33e2e0dab0d-d7b5dd02e3662ef66aa19a2238cfc0ee2aa07651.js" async="" crossorigin=""></script><script src="https://kbank-pointhub-staging.buzzvil.com/_next/static/chunks/46f3d006-3f63b80937c2ffc4-d7b5dd02e3662ef66aa19a2238cfc0ee2aa07651.js" async="" crossorigin=""></script><title>용돈 받기</title><meta name="description" content="용돈 받기 서비스"><script>
 (function() {
